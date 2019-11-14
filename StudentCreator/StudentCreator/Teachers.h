@@ -4,14 +4,18 @@
 #include <vector>
 #include <algorithm>
 #include "Student.h"
+#include <memory>
 class Teachers
 {
 public:
-	int firstName{};
-	int lastName{};
-	std::vector<Student>* students{};
+	std::string firstName{};
+	std::string lastName{};
+	std::vector<std::unique_ptr<Student>>* students{};
 
-	Teachers(int FirstName, int LastName, std::vector<Student>* Students);
+	Teachers(std::string FirstName, std::string LastName, std::vector<std::unique_ptr<Student>>* Students);
 	void ChangeGrade(std::string FirstName, std::string LastName, int Period, int Grade);
+	void AddStudent(int Age, std::string FirstName, std::string LastName, int Period, int Grade);
+	bool RemoveStudent(std::string FirstName, std::string LastName);
+	Student* Find(std::string FirstName, std::string LastName);
 };
 
